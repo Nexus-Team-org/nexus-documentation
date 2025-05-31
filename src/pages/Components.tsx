@@ -1,219 +1,125 @@
-import { Button } from "../components/ui/button";
-import { Badge } from "../components/ui/badge";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { motion } from 'framer-motion';
-import { PageHeader } from '../components/PageHeader';
 
-export default function Components() {
+import { motion } from "framer-motion";
+import { ComponentSidebar } from "@/components/ComponentSidebar";
+import { ComponentViewer } from "@/components/ComponentViewer";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { siteConfig } from "@/config/site";
+
+const Components = () => {
   const buttonCode = `import { Button } from "@/components/ui/button";
 
-function Example() {
+export function ButtonDemo() {
   return (
-    <div className="flex flex-wrap gap-2">
-      <Button>Primary</Button>
+    <div className="flex flex-wrap gap-4">
+      <Button variant="default">Default</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
+      <Button variant="destructive">Destructive</Button>
     </div>
   );
 }`;
 
-  const cardCode = `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+  const buttonUsage = `import { Button } from "@/components/ui/button";
 
-function Example() {
-  return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card description</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Card content goes here.</p>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Save</Button>
-      </CardFooter>
-    </Card>
-  );
-}`;
+// Basic usage
+<Button>Click me</Button>
 
-  const tabsCode = `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// With variants
+<Button variant="outline">Outline Button</Button>
+<Button variant="secondary">Secondary Button</Button>
 
-function Example() {
-  return (
-    <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">
-        <p>Account settings form goes here.</p>
-      </TabsContent>
-      <TabsContent value="password">
-        <p>Password change form goes here.</p>
-      </TabsContent>
-    </Tabs>
-  );
-}`;
+// With sizes
+<Button size="sm">Small</Button>
+<Button size="lg">Large</Button>
+
+// With icons
+<Button>
+  <Icon className="w-4 h-4 mr-2" />
+  Button with icon
+</Button>`;
 
   return (
-    <div className="min-h-screen bg-background">
-      <PageHeader
-        title="Components"
-        description="Pre-built, accessible UI components powered by Radix UI and styled with Tailwind CSS."
-        gradient={true}
-        centered={true}
-      />
+    <div className="flex min-h-screen -mx-4 sm:-mx-6 lg:-mx-8">
+      <ComponentSidebar />
       
-      <div className="container mx-auto px-4 max-w-6xl pb-24">
-
-        <div className="space-y-16">
-          {/* Button Component */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="glass-card p-6 rounded-xl border border-primary/10 shadow-lg"
+      <div className="flex-1 p-6 lg:p-8 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-5xl"
+        >
+          <ComponentViewer
+            title="Button"
+            description="A collection of button components with various styles and states. Use buttons to trigger actions and navigate through your application with professional styling."
+            code={buttonCode}
+            usage={buttonUsage}
           >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-semibold text-foreground flex items-center gap-2">
-                <span className="bg-primary/10 p-2 rounded-md">
-                  <span className="text-primary">B</span>
-                </span>
-                Button
-              </h2>
-              <Badge variant="outline" className="bg-glass">@/components/ui/button</Badge>
+            <div className="flex flex-wrap gap-4 p-8">
+              <Button variant="default">Default</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="destructive">Destructive</Button>
             </div>
-            <Tabs defaultValue="preview" className="w-full">
-              <TabsList>
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-                <TabsTrigger value="code">Code</TabsTrigger>
-              </TabsList>
-              <TabsContent value="preview" className="p-6 border rounded-b-lg bg-card">
-                <div className="flex flex-wrap gap-2">
-                  <Button className="bg-gradient-primary hover:opacity-90">Primary</Button>
-                  <Button variant="secondary">Secondary</Button>
-                  <Button variant="outline">Outline</Button>
-                  <Button variant="ghost">Ghost</Button>
-                  <Button variant="link">Link</Button>
-                </div>
-              </TabsContent>
-              <TabsContent value="code" className="rounded-b-lg overflow-hidden">
-                <SyntaxHighlighter 
-                  language="tsx" 
-                  style={vscDarkPlus}
-                  customStyle={{ margin: 0, borderRadius: '0 0 0.5rem 0.5rem' }}
-                >
-                  {buttonCode}
-                </SyntaxHighlighter>
-              </TabsContent>
-            </Tabs>
-          </motion.section>
+          </ComponentViewer>
 
-          {/* Card Component */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="glass-card p-6 rounded-xl border border-primary/10 shadow-lg"
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-semibold text-foreground flex items-center gap-2">
-                <span className="bg-primary/10 p-2 rounded-md">
-                  <span className="text-primary">C</span>
-                </span>
-                Card
-              </h2>
-              <Badge variant="outline" className="bg-glass">@/components/ui/card</Badge>
+          <div className="mt-16">
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-foreground mb-4">All Components</h2>
+              <p className="text-muted-foreground">
+                Professional UI components ready for production use
+              </p>
             </div>
-            <Tabs defaultValue="preview" className="w-full">
-              <TabsList>
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-                <TabsTrigger value="code">Code</TabsTrigger>
-              </TabsList>
-              <TabsContent value="preview" className="p-6 border rounded-b-lg bg-card">
-                <Card className="w-[350px] glass-card">
-                  <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card description</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p>Card content goes here.</p>
-                  </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Button variant="outline">Cancel</Button>
-                    <Button className="bg-gradient-primary hover:opacity-90">Save</Button>
-                  </CardFooter>
-                </Card>
-              </TabsContent>
-              <TabsContent value="code" className="rounded-b-lg overflow-hidden">
-                <SyntaxHighlighter 
-                  language="tsx" 
-                  style={vscDarkPlus}
-                  customStyle={{ margin: 0, borderRadius: '0 0 0.5rem 0.5rem' }}
+            
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {siteConfig.navigation.components.map((component, index) => (
+                <motion.div
+                  key={component.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  {cardCode}
-                </SyntaxHighlighter>
-              </TabsContent>
-            </Tabs>
-          </motion.section>
-
-          {/* Tabs Component */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="glass-card p-6 rounded-xl border border-primary/10 shadow-lg"
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-semibold text-foreground flex items-center gap-2">
-                <span className="bg-primary/10 p-2 rounded-md">
-                  <span className="text-primary">T</span>
-                </span>
-                Tabs
-              </h2>
-              <Badge variant="outline" className="bg-glass">@/components/ui/tabs</Badge>
+                  <Card className="hover:shadow-lg transition-all duration-300 border-border hover:border-foreground/20 h-full">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="text-lg font-semibold">{component.title}</CardTitle>
+                        <Badge 
+                          variant={component.status === "ready" ? "default" : "secondary"}
+                          className={component.status === "ready" 
+                            ? "bg-foreground text-background" 
+                            : "bg-muted text-muted-foreground"
+                          }
+                        >
+                          {component.status === "ready" ? "Ready" : "Soon"}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
+                        {component.description}
+                      </p>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full"
+                        disabled={component.status !== "ready"}
+                      >
+                        {component.status === "ready" ? "View Component" : "Coming Soon"}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
-            <Tabs defaultValue="preview" className="w-full">
-              <TabsList>
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-                <TabsTrigger value="code">Code</TabsTrigger>
-              </TabsList>
-              <TabsContent value="preview" className="p-6 border rounded-b-lg bg-card">
-                <Tabs defaultValue="account" className="w-[400px]">
-                  <TabsList className="bg-primary/10">
-                    <TabsTrigger value="account">Account</TabsTrigger>
-                    <TabsTrigger value="password">Password</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="account" className="p-4 bg-card/50 border border-border/50 mt-2 rounded-md">
-                    <p>Account settings form goes here.</p>
-                  </TabsContent>
-                  <TabsContent value="password" className="p-4 bg-card/50 border border-border/50 mt-2 rounded-md">
-                    <p>Password change form goes here.</p>
-                  </TabsContent>
-                </Tabs>
-              </TabsContent>
-              <TabsContent value="code" className="rounded-b-lg overflow-hidden">
-                <SyntaxHighlighter 
-                  language="tsx" 
-                  style={vscDarkPlus}
-                  customStyle={{ margin: 0, borderRadius: '0 0 0.5rem 0.5rem' }}
-                >
-                  {tabsCode}
-                </SyntaxHighlighter>
-              </TabsContent>
-            </Tabs>
-          </motion.section>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
-}
+};
+
+export default Components;
