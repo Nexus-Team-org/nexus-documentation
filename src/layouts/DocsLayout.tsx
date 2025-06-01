@@ -1,22 +1,26 @@
 
 import { Outlet } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 
-export const DocsLayout = () => {
+const DocsLayout = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <motion.main 
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-8"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <Outlet />
         </div>
       </motion.main>
+      <Footer />
     </div>
   );
 };
+
+export default DocsLayout;

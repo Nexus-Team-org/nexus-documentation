@@ -5,14 +5,14 @@ export const siteConfig = {
   version: "v1.0.0",
   description: "A modern React component library with TypeScript, Tailwind CSS, and everything you need to build beautiful applications faster.",
   discord: {
-    inviteUrl: "https://discord.gg/9QUFBjuSXf",
+    inviteUrl: "https://discord.gg/TaHyq88cmx",
     serverId: "964870545864802314",
     widgetUrl: "https://discord.com/widget?id=964870545864802314&theme=dark"
   },
   github: {
     url: "https://github.com/nexus-ui/nexus",
-    starUrl: "https://github.com/nexus-ui/nexus/stargazers"
-  },
+    starUrl: "https://github.com/nexus-ui/nexus/stargazers",
+  },        
   navigation: {
     main: [
       {
