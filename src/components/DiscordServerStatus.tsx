@@ -56,7 +56,7 @@ export default function DiscordServerStatus(): JSX.Element {
           <Skeleton className="h-6 w-32" />
           <Skeleton className="h-4 w-20" />
         </div>
-        {[1, 2].map((i) => (
+        {[1, 2, 3].map((i) => (
           <div key={i} className="flex items-center justify-between p-2">
             <div className="flex items-center space-x-3">
               <Skeleton className="w-8 h-8 rounded-full" />
@@ -77,9 +77,38 @@ export default function DiscordServerStatus(): JSX.Element {
     );
   }
 
-  const onlineMembers = data.members.filter(member => 
-    member.status === 'online' || member.status === 'idle' || member.status === 'dnd'
+  // Get specific users first, then sort the rest
+  const priorityUsers = ['_orin_theonly', '.youssefsh'];
+  
+  const sortedMembers = [...data.members].sort((a, b) => {
+    // Check if users are in the priority list
+    const aIsPriority = priorityUsers.includes(a.username.toLowerCase());
+    const bIsPriority = priorityUsers.includes(b.username.toLowerCase());
+    
+    // If both are priority, sort by their order in priorityUsers
+    if (aIsPriority && bIsPriority) {
+      return priorityUsers.indexOf(a.username.toLowerCase()) - priorityUsers.indexOf(b.username.toLowerCase());
+    }
+    // If only one is priority, it comes first
+    if (aIsPriority) return -1;
+    if (bIsPriority) return 1;
+    
+    // For non-priority users, sort by status then username
+    if (a.status === 'offline' && b.status !== 'offline') return 1;
+    if (a.status !== 'offline' && b.status === 'offline') return -1;
+    return a.username.localeCompare(b.username);
+  });
+
+  // Get priority users and then fill the rest up to 3 members
+  const priorityMembers = sortedMembers.filter(member => 
+    priorityUsers.includes(member.username.toLowerCase())
   );
+  
+  const otherMembers = sortedMembers.filter(member => 
+    !priorityUsers.includes(member.username.toLowerCase())
+  ).slice(0, 3 - priorityMembers.length);
+  
+  const displayedMembers = [...priorityMembers, ...otherMembers];
 
   return (
     <div className="space-y-4">
@@ -90,13 +119,13 @@ export default function DiscordServerStatus(): JSX.Element {
         <div className="flex items-center space-x-1">
           <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
           <span className="text-xs text-muted-foreground">
-            <span className="font-medium text-foreground">{onlineMembers.length}</span> online
+            <span className="font-medium text-foreground">{data.members.filter(m => m.status !== 'offline').length}</span> online
           </span>
         </div>
       </div>
       
       <div className="space-y-3 mb-4">
-        {onlineMembers.slice(0, 5).map((member) => (
+        {displayedMembers.map((member) => (
           <div 
             key={member.id} 
             className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 transition-colors"
@@ -115,10 +144,12 @@ export default function DiscordServerStatus(): JSX.Element {
                 <span className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-card ${
                   member.status === 'online' ? 'bg-emerald-500' : 
                   member.status === 'idle' ? 'bg-yellow-500' : 
-                  member.status === 'dnd' ? 'bg-red-500' : 'bg-gray-500'
+                  member.status === 'dnd' ? 'bg-red-500' : 'bg-gray-400'
                 }`}></span>
               </div>
-              <span className="font-medium text-sm text-foreground">
+              <span className={`font-medium text-sm ${
+                member.status === 'offline' ? 'text-muted-foreground' : 'text-foreground'
+              }`}>
                 {member.username}
               </span>
             </div>
