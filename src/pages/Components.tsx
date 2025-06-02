@@ -90,7 +90,7 @@ export function ButtonDemo() {
                         <Badge 
                           variant={component.status === "ready" ? "default" : "secondary"}
                           className={component.status === "ready" 
-                            ? "bg-foreground text-background" 
+                            ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white" 
                             : "bg-muted text-muted-foreground"
                           }
                         >
@@ -103,9 +103,9 @@ export function ButtonDemo() {
                         {component.description}
                       </p>
                       <Button 
-                        variant="outline" 
+                        variant={component.status === "ready" ? "default" : "outline"} 
                         size="sm" 
-                        className="w-full"
+                        className={`w-full ${component.status === "ready" ? "bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-100" : ""}`}
                         disabled={component.status !== "ready"}
                       >
                         {component.status === "ready" ? "View Component" : "Coming Soon"}

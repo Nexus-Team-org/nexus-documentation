@@ -10,7 +10,7 @@ Modern React component library with TypeScript and Tailwind CSS
 
 ### Installation
 ```bash
-git clone [your-repo-url]
+git clone https://github.com/AnasEchoFanani/nexus-documentation.git
 cd nexus-documentation
 npm install
 npm run dev

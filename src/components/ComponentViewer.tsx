@@ -37,7 +37,7 @@ export const ComponentViewer = ({ title, description, children, code, usage }: C
     >
       <div className="space-y-4">
         <div className="flex items-center space-x-3">
-          <Badge variant="outline" className="border-indigo-200 text-indigo-700 bg-indigo-50">
+          <Badge variant="default" className="bg-black text-white border-black dark:bg-white dark:text-black dark:border-white">
             Component
           </Badge>
           <h1 className="text-3xl font-bold text-slate-900">{title}</h1>
