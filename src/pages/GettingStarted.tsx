@@ -67,29 +67,29 @@ const GettingStarted = () => {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 py-12">
+    <div className="w-full">
       <motion.div
-        className="space-y-12 max-w-7xl mx-auto w-full"
+        className="space-y-24 w-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
         {/* Header */}
-        <div className="text-center space-y-6 max-w-3xl mx-auto">
+        <div className="text-center space-y-6 pt-24 pb-16">
           <motion.h1
-            className="text-4xl md:text-5xl font-bold tracking-tight"
-            initial={{ opacity: 0, y: 10 }}
+            className="text-5xl md:text-7xl font-bold tracking-tighter"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            Developer-First <span className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">Experience</span>
+            Developer-First <span className="bg-gradient-to-br from-foreground via-muted-foreground to-muted bg-clip-text text-transparent">Experience</span>
           </motion.h1>
           
           <motion.p
-            className="text-xl text-muted-foreground"
-            initial={{ opacity: 0, y: 10 }}
+            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           >
             Everything you need to build production-ready applications with speed and confidence.
           </motion.p>
@@ -97,97 +97,68 @@ const GettingStarted = () => {
 
         {/* Quick Start */}
         <motion.div
-          className="space-y-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          className="space-y-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ staggerChildren: 0.2 }}
         >
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold">Quick Start</h2>
-            <Badge variant="secondary" className="px-3 py-1 text-sm font-mono">
-              v1.0.0
-            </Badge>
-          </div>
+          <motion.div
+            className="text-center"
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } } }}
+          >
+            <h2 className="text-4xl font-bold tracking-tight">Quick Start</h2>
+            <p className="text-muted-foreground mt-2">Get up and running in minutes.</p>
+          </motion.div>
 
-          <div className="space-y-4">
+          <div className="max-w-5xl mx-auto">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="grid md:grid-cols-2 gap-8 items-center my-16"
+                variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } } }}
               >
-                <Card className="group overflow-hidden hover:shadow-lg transition-all duration-200 border border-gray-200 dark:border-gray-800">
-                  <CardHeader className="pb-0">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-foreground font-bold text-sm border border-gray-200 dark:border-gray-700">
-                        {index + 1}
+                <div className={`text-left ${index % 2 !== 0 ? 'md:order-2' : ''}`}>
+                  <Badge variant="outline" className="mb-3">{`Step ${index + 1}`}</Badge>
+                  <h3 className="text-3xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-muted-foreground text-lg">{step.description}</p>
+                </div>
+                <div className={`relative group ${index % 2 !== 0 ? 'md:order-1' : ''}`}>
+                  <div className="relative rounded-lg bg-muted text-muted-foreground font-mono text-sm border overflow-hidden">
+                    {/* Terminal header */}
+                    <div className="flex items-center px-4 py-2 border-b">
+                      <div className="flex space-x-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
                       </div>
-                      <CardTitle className="text-lg flex items-center">
-                        <step.icon className="w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
-                        {step.title}
-                      </CardTitle>
+                      <div className="ml-4 text-xs">bash</div>
                     </div>
-                  </CardHeader>
-                  <CardContent className="pt-4">
-                    <p className="text-muted-foreground mb-4">{step.description}</p>
-                    <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gray-800/50 rounded-lg" />
-                      <div className="relative p-4 rounded-lg bg-black text-gray-200 font-mono text-sm border border-gray-800 overflow-hidden">
-                        {/* Terminal header */}
-                        <div className="flex items-center mb-3 pb-2 border-b border-gray-800">
-                          <div className="flex space-x-1.5 mr-3">
-                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                          </div>
-                          <div className="text-xs text-gray-500">bash</div>
-                        </div>
-                        
-                        {/* Terminal content */}
-                        <div className="flex items-center">
-                          <span className="text-gray-400 select-none">
-                            {step.username}@<span className="text-gray-300">{step.hostname}</span>:~{step.prompt}
-                          </span>
-                          <code className="text-gray-100 ml-1">{step.command}</code>
-                          <span className="inline-block w-2 h-5 bg-gray-400 ml-1 animate-pulse"></span>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            className="h-8 w-8 p-0 text-gray-500 hover:text-white ml-auto"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              copyToClipboard(step.command, index);
-                            }}
-                          >
-                            <AnimatePresence mode="wait">
-                              {copiedIndex === index ? (
-                                <motion.span
-                                  key="check"
-                                  initial={{ scale: 0.8, opacity: 0 }}
-                                  animate={{ scale: 1, opacity: 1 }}
-                                  exit={{ scale: 0.8, opacity: 0 }}
-                                  className="text-gray-300"
-                                >
-                                  <CheckCircle className="w-4 h-4" />
-                                </motion.span>
-                              ) : (
-                                <motion.span
-                                  key="copy"
-                                  initial={{ scale: 0.8, opacity: 0 }}
-                                  animate={{ scale: 1, opacity: 1 }}
-                                  exit={{ scale: 0.8, opacity: 0 }}
-                                >
-                                  <Copy className="w-4 h-4" />
-                                </motion.span>
-                              )}
-                            </AnimatePresence>
-                          </Button>
-                        </div>
-                      </div>
+                    
+                    {/* Terminal content */}
+                    <div className="relative p-4">
+                      <pre><code className="text-sm">{step.command}</code></pre>
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="absolute top-1/2 right-2 -translate-y-1/2 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                        onClick={() => copyToClipboard(step.command, index)}
+                      >
+                        <AnimatePresence mode="wait">
+                          {copiedIndex === index ? (
+                            <motion.span key="check" initial={{ scale: 0.8 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }}>
+                              <CheckCircle className="w-4 h-4 text-green-500" />
+                            </motion.span>
+                          ) : (
+                            <motion.span key="copy" initial={{ scale: 0.8 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }}>
+                              <Copy className="w-4 h-4" />
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
+                      </Button>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -195,104 +166,100 @@ const GettingStarted = () => {
 
         {/* Features */}
         <motion.div
-          className="space-y-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          className="space-y-12 py-24 bg-muted/50 border-y"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ staggerChildren: 0.2 }}
         >
-          <h2 className="text-2xl font-bold">Why Developers Love Us</h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 w-full">
+          <motion.div
+            className="text-center max-w-3xl mx-auto"
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } } }}
+          >
+            <h2 className="text-4xl font-bold tracking-tight">Why Developers Love Us</h2>
+            <p className="text-muted-foreground mt-2 text-lg">A toolkit designed for productivity and joy.</p>
+          </motion.div>
+          
+          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
             {features.map((feature, index) => (
-              <Card key={index} className="border-gray-200 dark:border-gray-800">
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Cpu className="w-5 h-5 mr-2" />
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {feature.items.map((item, i) => (
-                      <li key={i} className="flex items-start">
-                        <Check className="w-4 h-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={index}
+                variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } } }}
+              >
+                <Card className="p-8 border-2 h-full bg-card transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-primary/20">
+                  <CardHeader className="p-0 mb-6">
+                    <CardTitle className="flex items-center text-2xl font-bold">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                        <Cpu className="w-6 h-6 text-primary" />
+                      </div>
+                      {feature.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                    <ul className="space-y-4">
+                      {feature.items.map((item, i) => (
+                        <li key={i} className="flex items-start">
+                          <Check className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                          <span className="text-muted-foreground text-base">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* CTA - Monochrome Theme */}
+        {/* CTA */}
         <motion.div
-          className="relative overflow-hidden rounded-2xl border border-gray-800 bg-black max-w-7xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          className="py-24"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Grid pattern */}
-          <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-          
-          <div className="relative px-8 py-16 sm:py-20">
-            <div className="max-w-3xl mx-auto text-center space-y-8 w-full px-4">
-              <div className="space-y-5">
-                <Badge variant="outline" className="px-3 py-1 text-xs font-mono tracking-wider bg-black text-gray-300 border-gray-800">
-                  JOIN OUR COMMUNITY
-                </Badge>
-                <h3 className="text-3xl md:text-5xl font-bold text-white">
-                  Ready to build something <span className="text-gray-300">amazing</span>?
-                </h3>
-                <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                  Join thousands of developers in our Discord community. Get help, share projects, and stay updated.
-                </p>
-              </div>
-              
-              <div className="flex flex-col items-center gap-4 pt-2">
-                <motion.div 
-                  whileHover={{ y: -2 }} 
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full max-w-xs"
+          <div className="text-center">
+            <motion.h3
+              className="text-4xl md:text-5xl font-bold"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              Ready to build something amazing?
+            </motion.h3>
+            <motion.p
+              className="text-lg text-muted-foreground max-w-2xl mx-auto mt-4"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
+              Join our community of developers and start your journey with Nexus today.
+            </motion.p>
+            <motion.div
+              className="mt-8"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+            >
+              <a
+                href={siteConfig.discord.inviteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  size="lg"
+                  className="h-12 px-8"
                 >
-                  <a 
-                    href={siteConfig.discord.inviteUrl}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block w-full"
-                  >
-                    <Button 
-                      size="lg" 
-                      className="w-full h-14 bg-[#5865F2] hover:bg-[#4752c4] text-white transition-colors group"
-                    >
-                      <MessageCircle className="w-5 h-5 mr-2" />
-                      Join Discord Community
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </a>
-                </motion.div>
-                
-                <div className="flex items-center space-x-4 pt-4">
-                  <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">
-                    Documentation
-                  </a>
-                  <span className="text-gray-700">•</span>
-                  <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">
-                    GitHub
-                  </a>
-                  <span className="text-gray-700">•</span>
-                  <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">
-                    Twitter
-                  </a>
-                </div>
-              </div>
-              
-              <div className="pt-6 border-t border-gray-900">
-                <p className="text-xs text-gray-600">
-                  Open source • MIT Licensed • No credit card required
-                </p>
-              </div>
-            </div>
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Join Discord Community
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
+            </motion.div>
           </div>
         </motion.div>
       </motion.div>

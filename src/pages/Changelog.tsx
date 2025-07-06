@@ -1,198 +1,145 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CalendarDays, Plus, Bug, Zap, Shield, GitBranch, GitCommit } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Check, Bug, Zap, GitBranch, Calendar, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const releases = [
   {
     version: "v1.0.0",
-    date: "January 1, 2025",
-    status: "Latest",
+    date: "2025-01-01",
+    title: "The Genesis",
+    description: "The first stable release of Nexus Design System, featuring a comprehensive set of 30+ components, full dark mode support, and a brand new documentation site.",
     changes: [
-      { type: "feature", icon: Plus, text: "Initial release of Nexus UI" },
-      { type: "feature", icon: Plus, text: "Core component library with 25+ components" },
-      { type: "feature", icon: Shield, text: "Full TypeScript support" },
-      { type: "feature", icon: Zap, text: "Tailwind CSS integration" },
-      { type: "feature", icon: Plus, text: "Professional black and white design system" }
-    ]
+      { type: "feature", text: "Initial release with 30+ components" },
+      { type: "feature", text: "Full dark mode support" },
+      { type: "feature", text: "New documentation site" },
+      { type: "improvement", text: "Improved accessibility for all components" },
+    ],
   },
   {
     version: "v0.9.0",
-    date: "January 15, 2025",
-    status: "Beta",
+    date: "2024-11-15",
+    title: "The Foundation",
+    description: "This release focused on laying a solid foundation for the design system, with a focus on performance, stability, and developer experience.",
     changes: [
-      { type: "feature", icon: Plus, text: "Added Command component" },
-      { type: "feature", icon: Plus, text: "Added Badge component variants" },
-      { type: "fix", icon: Bug, text: "Fixed responsive design issues" },
-      { type: "improvement", icon: Zap, text: "Improved component performance" }
-    ]
+      { type: "feature", text: "Added 10 new components" },
+      { type: "fix", text: "Fixed a critical bug in the Button component" },
+      { type: "improvement", text: "Improved performance of all components" },
+    ],
   },
   {
     version: "v0.8.0",
-    date: "January 1, 2025",
-    status: "Beta",
+    date: "2024-10-01",
+    title: "The Beginning",
+    description: "The first public beta of Nexus Design System, featuring a limited set of components and a basic documentation site.",
     changes: [
-      { type: "feature", icon: Plus, text: "Added Select component" },
-      { type: "feature", icon: Plus, text: "Added Checkbox component" },
-      { type: "feature", icon: Plus, text: "Added Switch component" },
-      { type: "fix", icon: Bug, text: "Fixed accessibility issues" }
-    ]
-  }
+      { type: "feature", text: "Initial public beta release" },
+      { type: "feature", text: "Added 5 new components" },
+      { type: "fix", text: "Fixed a bug in the Input component" },
+    ],
+  },
 ];
 
-const getChangeTypeColor = (type: string) => {
-  switch (type) {
-    case "feature":
-      return "bg-black text-white";
-    case "fix":
-      return "bg-gray-100 text-gray-900 border border-gray-200";
-    case "improvement":
-      return "bg-gray-200 text-gray-900";
-    default:
-      return "bg-gray-100 text-gray-900";
-  }
-};
-
-const getChangeIcon = (type: string) => {
-  switch (type) {
-    case "feature":
-      return <Plus className="w-3 h-3" />;
-    case "fix":
-      return <Bug className="w-3 h-3" />;
-    case "improvement":
-      return <Zap className="w-3 h-3" />;
-    default:
-      return <Plus className="w-3 h-3" />;
-  }
+const changeMeta = {
+  feature: { icon: Check, className: "bg-green-500/10 text-green-500", label: "Feature" },
+  fix: { icon: Bug, className: "bg-red-500/10 text-red-500", label: "Fix" },
+  improvement: { icon: Zap, className: "bg-blue-500/10 text-blue-500", label: "Improvement" },
 };
 
 const Changelog = () => {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12 md:py-16 lg:py-20 relative">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 -z-10 overflow-hidden opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-      </div>
-      
-      <motion.div
-        className="space-y-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="space-y-6">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          >
-            <Badge variant="outline" className="border-gray-300 text-gray-600 font-medium tracking-wide">
-              RELEASE NOTES
-            </Badge>
-          </motion.div>
-          
-          <motion.div className="space-y-2">
-            <motion.h1
-              className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-            >
-              Changelog
-            </motion.h1>
-            
-            <motion.p
-              className="text-lg text-gray-600 max-w-2xl leading-relaxed"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-            >
-              Track all changes, improvements, and new features in Nexus UI.
-            </motion.p>
-          </motion.div>
-        </div>
+    <div className="bg-background text-foreground">
+      <header className="py-16 md:py-24 lg:py-32 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Badge variant="outline" className="dark:border-gray-700">What's New</Badge>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mt-4">
+            Changelog
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mt-6">
+            Stay up-to-date with the latest features, improvements, and bug fixes for Nexus Design System.
+          </p>
+        </motion.div>
+      </header>
 
-        <div className="space-y-8">
+      <main className="container max-w-5xl mx-auto px-4 py-12">
+        <div className="relative">
+          <div className="absolute left-1/2 -translate-x-1/2 w-px bg-border h-full hidden md:block" aria-hidden="true" />
           {releases.map((release, index) => (
             <motion.div
               key={release.version}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 * index }}
-              className="relative"
+              className="grid md:grid-cols-2 gap-8 md:gap-16 items-start mb-12"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="border border-gray-200 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
-                <CardHeader>
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-                        {release.version}
-                      </h2>
-                      <Badge 
-                        variant="outline" 
-                        className={cn(
-                          "px-2 py-1 text-xs font-medium",
-                          release.status === "Latest" 
-                            ? "bg-black text-white border-black" 
-                            : "bg-gray-100 text-gray-800"
-                        )}
-                      >
-                        {release.status}
-                      </Badge>
-                    </div>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <CalendarDays className="w-4 h-4 mr-1.5" />
-                      <span>{release.date}</span>
-                    </div>
+              <div className={cn("md:text-right", index % 2 === 0 ? "md:order-1" : "md:order-2")}>
+                <div className="inline-block bg-card p-4 rounded-lg border dark:border-gray-800">
+                  <div className="flex items-center gap-3">
+                    <GitBranch className="w-5 h-5 text-muted-foreground" />
+                    <h3 className="text-2xl font-bold">{release.title}</h3>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {release.changes.map((change, changeIndex) => (
-                      <div key={changeIndex} className="flex items-start space-x-3 group">
-                        <div 
-                          className={cn(
-                            "w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0",
-                            getChangeTypeColor(change.type)
-                          )}
-                        >
-                          {getChangeIcon(change.type)}
-                        </div>
-                        <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
-                          {change.text}
-                        </span>
+                  <p className="text-muted-foreground mt-2">{release.description}</p>
+                </div>
+              </div>
+              <div className={cn("relative", index % 2 === 0 ? "md:order-2" : "md:order-1")}>
+                <Card className="w-full border dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <Badge variant="default">{release.version}</Badge>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="w-4 h-4" />
+                        <time dateTime={release.date}>{new Date(release.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {release.changes.map((change, changeIndex) => {
+                        const meta = changeMeta[change.type as keyof typeof changeMeta];
+                        const Icon = meta.icon;
+                        return (
+                          <li key={changeIndex} className="flex items-start gap-3">
+                            <div className={cn("w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0", meta.className)}>
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <span className="text-foreground/90">{change.text}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
             </motion.div>
           ))}
         </div>
+      </main>
 
-        {/* Subscribe to Updates */}
+      <footer className="py-16 md:py-24 lg:py-32 text-center">
         <motion.div
-          className="bg-black text-white rounded-xl p-8 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="max-w-2xl mx-auto space-y-4">
-            <CalendarDays className="w-12 h-12 mx-auto" />
-            <h3 className="text-2xl font-bold">Stay Updated</h3>
-            <p className="text-gray-300">
-              Get notified about new releases, features, and important updates to Nexus UI.
-            </p>
-            <div className="pt-2">
-              <Badge variant="secondary" className="bg-white/10 text-white border-white/20">
-                Coming Soon
-              </Badge>
-            </div>
+          <h2 className="text-3xl md:text-4xl font-bold">Stay in the Loop</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto mt-4">
+            Subscribe to our newsletter to get the latest updates and news about Nexus Design System.
+          </p>
+          <div className="mt-8">
+            <Button size="lg">
+              Subscribe Now <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
           </div>
         </motion.div>
-      </motion.div>
+      </footer>
     </div>
   );
 };

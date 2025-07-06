@@ -6,13 +6,14 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
 import { useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Navbar = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <motion.nav 
+    <motion.nav
       className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border shadow-sm"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -22,8 +23,8 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-4">
             {/* Logo Section */}
-            <NavLink 
-              to="/" 
+            <NavLink
+              to="/"
               className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -41,7 +42,7 @@ export const Navbar = () => {
             </NavLink>
             
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1 ml-8">
+            <div className="hidden md:flex items-center space-x-1 ml-8">
               {siteConfig.navigation.main.map((item) => {
                 const isActive = location.pathname === item.href;
                 
@@ -51,8 +52,8 @@ export const Navbar = () => {
                     to={item.href}
                     className={cn(
                       "px-4 py-2 rounded-md transition-colors duration-200 font-medium text-sm",
-                      isActive 
-                        ? "bg-accent text-accent-foreground shadow-sm" 
+                      isActive
+                        ? "bg-accent text-accent-foreground shadow-sm"
                         : "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
                     )}
                   >
@@ -65,26 +66,27 @@ export const Navbar = () => {
           
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="sm"
               className="text-muted-foreground hover:text-foreground"
               onClick={() => window.open(siteConfig.discord.inviteUrl, '_blank')}
             >
               <MessageCircle className="w-4 h-4 mr-2" />
               Discord
             </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               className="text-muted-foreground hover:text-foreground"
               onClick={() => window.open(siteConfig.github.starUrl, '_blank')}
             >
               <Star className="w-4 h-4 mr-2" />
               Star
             </Button>
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="sm"
               className="text-muted-foreground hover:text-foreground"
               onClick={() => window.open(siteConfig.github.url, '_blank')}
@@ -94,7 +96,8 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"
@@ -125,8 +128,8 @@ export const Navbar = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
                       "block px-3 py-2 rounded-md text-base font-medium transition-colors",
-                      isActive 
-                        ? "bg-accent text-accent-foreground" 
+                      isActive
+                        ? "bg-accent text-accent-foreground"
                         : "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
                     )}
                   >
@@ -136,9 +139,9 @@ export const Navbar = () => {
               })}
               <div className="pt-4 pb-2 border-t border-border mt-4">
                 <div className="flex flex-col space-y-2">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     className="justify-start text-muted-foreground hover:text-foreground"
                     onClick={() => {
                       window.open(siteConfig.discord.inviteUrl, '_blank');
@@ -148,9 +151,9 @@ export const Navbar = () => {
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Join Discord
                   </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     className="justify-start text-muted-foreground hover:text-foreground"
                     onClick={() => {
                       window.open(siteConfig.github.starUrl, '_blank');

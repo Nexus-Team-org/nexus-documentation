@@ -37,18 +37,18 @@ export const ComponentViewer = ({ title, description, children, code, usage }: C
     >
       <div className="space-y-4">
         <div className="flex items-center space-x-3">
-          <Badge variant="default" className="bg-black text-white border-black dark:bg-white dark:text-black dark:border-white">
+          <Badge>
             Component
           </Badge>
-          <h1 className="text-3xl font-bold text-slate-900">{title}</h1>
+          <h1 className="text-3xl font-bold">{title}</h1>
         </div>
-        <p className="text-lg text-slate-600 leading-relaxed max-w-3xl">
+        <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
           {description}
         </p>
       </div>
 
       <Tabs defaultValue="preview" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 bg-slate-100">
+        <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="preview" className="flex items-center space-x-2">
             <Eye className="w-4 h-4" />
             <span>Preview</span>
@@ -60,11 +60,11 @@ export const ComponentViewer = ({ title, description, children, code, usage }: C
         </TabsList>
 
         <TabsContent value="preview" className="mt-6">
-          <Card className="bg-gradient-to-br from-slate-50 to-white border-slate-200 shadow-sm">
+          <Card>
             <CardHeader>
               <CardTitle className="text-lg">Live Preview</CardTitle>
             </CardHeader>
-            <CardContent className="p-8 bg-white rounded-b-lg border-t border-slate-100">
+            <CardContent className="p-8 rounded-b-lg border-t">
               <div className="flex items-center justify-center min-h-[200px]">
                 {children}
               </div>
@@ -73,7 +73,7 @@ export const ComponentViewer = ({ title, description, children, code, usage }: C
         </TabsContent>
 
         <TabsContent value="code" className="mt-6">
-          <Card className="bg-gradient-to-br from-slate-50 to-white border-slate-200 shadow-sm">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-lg">Component Code</CardTitle>
               <Button
@@ -96,24 +96,34 @@ export const ComponentViewer = ({ title, description, children, code, usage }: C
               </Button>
             </CardHeader>
             <CardContent>
-              <pre className="bg-slate-900 text-slate-100 p-6 rounded-lg overflow-x-auto text-sm">
-                <code>{code}</code>
-              </pre>
+              <div className="relative">
+                <pre className="bg-muted text-muted-foreground p-6 rounded-lg overflow-x-auto text-sm">
+                  <code>{code}</code>
+                </pre>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => copyToClipboard(code)}
+                  className="absolute top-2 right-2"
+                >
+                  {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                </Button>
+              </div>
               {usage && (
                 <div className="mt-6">
-                  <h4 className="text-md font-semibold text-slate-900 mb-3">Usage</h4>
+                  <h4 className="text-md font-semibold mb-3">Usage</h4>
                   <div className="relative">
+                    <pre className="bg-muted text-muted-foreground p-6 rounded-lg overflow-x-auto text-sm">
+                      <code>{usage}</code>
+                    </pre>
                     <Button
-                      variant="outline"
-                      size="sm"
+                      variant="ghost"
+                      size="icon"
                       onClick={() => copyToClipboard(usage)}
-                      className="absolute top-2 right-2 z-10"
+                      className="absolute top-2 right-2"
                     >
                       <Copy className="w-4 h-4" />
                     </Button>
-                    <pre className="bg-slate-100 text-slate-800 p-6 rounded-lg overflow-x-auto text-sm">
-                      <code>{usage}</code>
-                    </pre>
                   </div>
                 </div>
               )}

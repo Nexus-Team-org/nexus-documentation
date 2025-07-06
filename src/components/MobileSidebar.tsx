@@ -1,4 +1,3 @@
-
 import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
@@ -40,16 +39,11 @@ const iconMap = {
   Code
 };
 
-export const ComponentSidebar = () => {
+export const MobileSidebar = () => {
   const location = useLocation();
 
   return (
-    <motion.aside 
-      className="lg:block w-80 bg-card border-r border-border overflow-y-auto"
-      initial={{ x: -320 }}
-      animate={{ x: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-    >
+    <aside className="w-full bg-card border-r border-border overflow-y-auto">
       <div className="p-6">
         <div className="mb-6">
           <h2 className="text-lg font-semibold text-foreground mb-2">Components</h2>
@@ -111,6 +105,6 @@ export const ComponentSidebar = () => {
           })}
         </div>
       </div>
-    </motion.aside>
+    </aside>
   );
 };

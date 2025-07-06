@@ -14,9 +14,7 @@ const DocsLayout = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="max-w-7xl mx-auto w-full">
-          <Outlet />
-        </div>
+        <Outlet />
       </motion.main>
       <Footer />
     </div>

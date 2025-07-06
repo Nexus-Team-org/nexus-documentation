@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { siteConfig } from "@/config/site";
 import { Github, MessageCircle, Twitter } from "lucide-react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -58,14 +60,14 @@ export const Footer = () => {
             <h3 className="text-sm font-semibold mb-4">Stay Updated</h3>
             <p className="text-sm text-muted-foreground mb-4">Subscribe to our newsletter for the latest updates and news.</p>
             <div className="flex space-x-2">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="flex-1 px-3 py-2 text-sm rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1"
               />
-              <button className="px-4 py-2 bg-foreground text-background text-sm font-medium rounded-md hover:bg-foreground/90 transition-colors">
+              <Button>
                 Subscribe
-              </button>
+              </Button>
             </div>
           </div>
         </div>

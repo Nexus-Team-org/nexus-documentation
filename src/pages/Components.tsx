@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { MobileSidebar } from "@/components/MobileSidebar";
 
 const Components = () => {
   const buttonCode = `import { Button } from "@/components/ui/button";
@@ -42,15 +45,30 @@ export function ButtonDemo() {
 </Button>`;
 
   return (
-    <div className="flex min-h-screen -mx-4 sm:-mx-6 lg:-mx-8">
-      <ComponentSidebar />
+    <div className="flex min-h-screen">
+      <div className="hidden lg:block">
+        <ComponentSidebar />
+      </div>
       
       <div className="flex-1 p-6 lg:p-8 overflow-hidden">
+        <div className="lg:hidden mb-4">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Menu className="w-5 h-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-80 p-0">
+              <div className="h-full overflow-y-auto">
+                <MobileSidebar />
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-5xl"
         >
           <ComponentViewer
             title="Button"
@@ -87,12 +105,8 @@ export function ButtonDemo() {
                     <CardHeader className="pb-4">
                       <div className="flex items-center justify-between">
                         <CardTitle className="text-lg font-semibold">{component.title}</CardTitle>
-                        <Badge 
+                        <Badge
                           variant={component.status === "ready" ? "default" : "secondary"}
-                          className={component.status === "ready" 
-                            ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white" 
-                            : "bg-muted text-muted-foreground"
-                          }
                         >
                           {component.status === "ready" ? "Ready" : "Soon"}
                         </Badge>
@@ -102,10 +116,10 @@ export function ButtonDemo() {
                       <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
                         {component.description}
                       </p>
-                      <Button 
-                        variant={component.status === "ready" ? "default" : "outline"} 
-                        size="sm" 
-                        className={`w-full ${component.status === "ready" ? "bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-100" : ""}`}
+                      <Button
+                        variant={component.status === "ready" ? "default" : "outline"}
+                        size="sm"
+                        className="w-full"
                         disabled={component.status !== "ready"}
                       >
                         {component.status === "ready" ? "View Component" : "Coming Soon"}
