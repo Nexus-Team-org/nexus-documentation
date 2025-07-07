@@ -11,8 +11,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-          <AppRouter />
+      <BrowserRouter future={{ v7_startTransition: true }}>
+        <AppRouter />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

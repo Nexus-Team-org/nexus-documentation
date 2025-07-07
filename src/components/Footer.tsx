@@ -21,9 +21,6 @@ export const Footer = () => {
               {siteConfig.description}
             </p>
             <div className="flex space-x-4 pt-2">
-              <a href={siteConfig.github.url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
-                <Github className="h-5 w-5" />
-              </a>
               <a href={siteConfig.discord.inviteUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Discord">
                 <MessageCircle className="h-5 w-5" />
               </a>
@@ -44,16 +41,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Resources */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li><a href={siteConfig.github.url} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">GitHub Repository</a></li>
-              <li><a href={siteConfig.github.url + "/issues"} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Report an Issue</a></li>
-              <li><a href={siteConfig.github.url + "/discussions"} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Discussions</a></li>
-              <li><a href={siteConfig.github.url + "/releases"} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Releases</a></li>
-            </ul>
-          </div>
 
           {/* Newsletter */}
           <div>

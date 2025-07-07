@@ -10,7 +10,7 @@ const steps = [
   {
     title: "Create your project",
     description: "Use our CLI tool to scaffold a new Nexus UI project with all dependencies pre-configured.",
-    command: "npx create-nexus-init my-project",
+    command: "nexus new my-app",
     icon: Terminal,
     prompt: "$",
     username: "user",
@@ -19,7 +19,7 @@ const steps = [
   {
     title: "Navigate to your project",
     description: "Change into your project directory to start development.",
-    command: "cd my-project",
+    command: "cd my-app",
     icon: FileCode,
     prompt: "$",
     username: "user",

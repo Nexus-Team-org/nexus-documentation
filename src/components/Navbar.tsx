@@ -76,23 +76,6 @@ export const Navbar = () => {
               <MessageCircle className="w-4 h-4 mr-2" />
               Discord
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-muted-foreground hover:text-foreground"
-              onClick={() => window.open(siteConfig.github.starUrl, '_blank')}
-            >
-              <Star className="w-4 h-4 mr-2" />
-              Star
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-muted-foreground hover:text-foreground"
-              onClick={() => window.open(siteConfig.github.url, '_blank')}
-            >
-              <Github className="w-4 h-4" />
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -150,18 +133,6 @@ export const Navbar = () => {
                   >
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Join Discord
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="justify-start text-muted-foreground hover:text-foreground"
-                    onClick={() => {
-                      window.open(siteConfig.github.starUrl, '_blank');
-                      setMobileMenuOpen(false);
-                    }}
-                  >
-                    <Star className="w-4 h-4 mr-2" />
-                    Star on GitHub
                   </Button>
                 </div>
               </div>

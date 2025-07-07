@@ -122,9 +122,9 @@ const Index = () => {
               <div className="flex items-center">
                 <span className="text-muted-foreground/80 select-none mr-2 font-mono">$</span>
                 <code className="text-sm font-mono text-foreground select-all bg-background/50 px-3 py-1.5 rounded-md">
-                  npx create-nexus-init@latest my-project
+                  npm install -g @nexus-dev/cli
                 </code>
-                <CopyButton text="npx create-nexus-init@latest my-project" />
+                <CopyButton text="npm install -g @nexus-dev/cli" />
               </div>
             </motion.div>
 
@@ -406,22 +406,6 @@ const Index = () => {
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            
-            <a 
-              href={siteConfig.github.starUrl} 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
-              <Button 
-                size="lg" 
-                className="bg-background/10 text-background hover:bg-background/20 hover:shadow-lg hover:scale-105 transition-all duration-300 group-hover:-translate-y-0.5 px-8 py-6 text-base font-medium backdrop-blur-sm"
-              >
-                <Star className="w-5 h-5 mr-2" />
-                Star on GitHub
-              </Button>
-            </a>
-            
             {/* Global styles */}
             <style dangerouslySetInnerHTML={{
               __html: `

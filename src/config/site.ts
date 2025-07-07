@@ -9,10 +9,6 @@ export const siteConfig = {
     serverId: "964870545864802314",
     widgetUrl: "https://discord.com/widget?id=964870545864802314&theme=dark"
   },
-  github: {
-    url: "https://github.com/nexus-ui/nexus",
-    starUrl: "https://github.com/nexus-ui/nexus/stargazers",
-  },        
   navigation: {
     main: [
       {
