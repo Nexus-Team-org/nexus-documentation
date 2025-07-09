@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ExternalLink } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 interface DiscordMember {
   id: string;
@@ -78,7 +79,7 @@ export default function DiscordServerStatus(): JSX.Element {
   }
 
   // Get specific users first, then sort the rest
-  const priorityUsers = ['_orin_theonly', '.youssefsh'];
+  const priorityUsers = ['_orin_theonly', '.youssefsh', 'signor_morocco'];
   
   const sortedMembers = [...data.members].sort((a, b) => {
     // Check if users are in the priority list
@@ -165,7 +166,7 @@ export default function DiscordServerStatus(): JSX.Element {
       
       <div className="space-y-2">
         <a 
-          href="https://discord.gg/ZrnyNxg8"
+          href={siteConfig.discord.inviteUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors cursor-pointer"
