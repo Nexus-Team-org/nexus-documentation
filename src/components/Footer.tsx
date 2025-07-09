@@ -38,6 +38,7 @@ export const Footer = () => {
               <li><Link to="/components" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Components</Link></li>
               <li><Link to="/examples" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Examples</Link></li>
               <li><Link to="/changelog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Changelog</Link></li>
+              <li><Link to="/feedback" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Feedback</Link></li>
             </ul>
           </div>
 
