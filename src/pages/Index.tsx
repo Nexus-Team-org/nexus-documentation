@@ -332,7 +332,7 @@ const Index = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
-                    href="https://discord.gg/ZrnyNxg8" 
+                    href={siteConfig.discord.inviteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-medium text-background bg-foreground hover:bg-foreground/90 rounded-lg transition-all duration-300 hover:shadow-lg"

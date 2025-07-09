@@ -5,7 +5,7 @@ export const siteConfig = {
   version: "v1.0.0",
   description: "A modern React component library with TypeScript, Tailwind CSS, and everything you need to build beautiful applications faster.",
   discord: {
-    inviteUrl: "https://discord.gg/TaHyq88cmx",
+    inviteUrl: "https://discord.gg/227DUAqTzN",
     serverId: "964870545864802314",
     widgetUrl: "https://discord.com/widget?id=964870545864802314&theme=dark"
   },
