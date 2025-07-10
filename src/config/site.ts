@@ -31,6 +31,10 @@ export const siteConfig = {
         title: "Changelog",
         href: "/changelog",
       },
+      {
+        title: "Feedback",
+        href: "/feedback",
+      },
     ],
     components: [
       {
@@ -132,7 +136,10 @@ export const siteConfig = {
     { label: "Components", value: "25+" },
     { label: "TypeScript", value: "100%" },
     { label: "Tree Shaking", value: "✓" }
-  ]
+  ],
+  formspree: {
+    formUrl: "https://formspree.io/f/mldnyqyz"
+  }
 } as const;
 
 export type SiteConfig = typeof siteConfig;
