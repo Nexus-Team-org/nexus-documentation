@@ -35,6 +35,10 @@ export const siteConfig = {
         title: "Feedback",
         href: "/feedback",
       },
+      {
+        title: "CLI",
+        href: "/cli",
+      },
     ],
     components: [
       {
