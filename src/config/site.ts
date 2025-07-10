@@ -1,6 +1,6 @@
 
 export const siteConfig = {
-  name: "Nexus",
+  name: "Okami",
   logo: "</>",
   version: "v1.0.0",
   description: "A modern React component library with TypeScript, Tailwind CSS, and everything you need to build beautiful applications faster.",

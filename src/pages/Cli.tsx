@@ -8,7 +8,7 @@ import { useState } from "react";
 const features = [
   {
     title: "Project Generation",
-    description: "Create new Nexus projects with a single command",
+    description: "Create new Okami projects with a single command",
     icon: Package,
   },
   {
@@ -41,7 +41,7 @@ const features = [
 const commands = [
   {
     title: "Create a New Project",
-    description: "Scaffold a new Nexus application",
+    description: "Scaffold a new Okami application",
     command: "nexus new my-app",
     prompt: "$",
   },
@@ -90,7 +90,7 @@ const CliPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            Nexus <span className="bg-gradient-to-br from-foreground via-muted-foreground to-muted bg-clip-text text-transparent">CLI</span>
+            Okami <span className="bg-gradient-to-br from-foreground via-muted-foreground to-muted bg-clip-text text-transparent">CLI</span>
           </motion.h1>
           
           <motion.p
@@ -99,7 +99,7 @@ const CliPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           >
-            The official command-line interface for Nexus, a modern framework that brings Angular-like features to React.
+            The official command-line interface for Okami, a modern framework that brings Angular-like features to React.
           </motion.p>
         </div>
 
@@ -137,7 +137,7 @@ const CliPage = () => {
             <CardHeader>
               <CardTitle className="text-2xl">Installation</CardTitle>
               <CardDescription>
-                Install the Nexus CLI globally to get started
+                Install the Okami CLI globally to get started
               </CardDescription>
             </CardHeader>
             <CardContent>

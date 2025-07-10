@@ -1,4 +1,4 @@
-# Nexus Documentation
+# Okami Documentation
 
 Modern React component library with TypeScript and Tailwind CSS
 

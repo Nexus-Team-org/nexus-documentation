@@ -94,7 +94,7 @@ const Examples = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          Built with Nexus UI
+          Built with Okami UI
         </motion.h1>
         
         <motion.p
@@ -103,7 +103,7 @@ const Examples = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          Discover real-world examples and templates built with Nexus UI components.
+          Discover real-world examples and templates built with Okami UI components.
           Everything you need to kickstart your next project.
         </motion.p>
 
@@ -240,7 +240,7 @@ const Examples = () => {
           <Code2 className="w-12 h-12 mx-auto text-white mb-6" />
           <h3 className="text-3xl font-bold text-white mb-4">Showcase Your Work</h3>
           <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-            Have you built something amazing with Nexus UI? Share it with our community 
+            Have you built something amazing with Okami UI? Share it with our community 
             and get featured in our gallery of examples.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
