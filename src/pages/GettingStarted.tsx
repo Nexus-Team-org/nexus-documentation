@@ -9,7 +9,7 @@ import { useState } from "react";
 const steps = [
   {
     title: "Create your project",
-    description: "Use our CLI tool to scaffold a new Nexus UI project with all dependencies pre-configured.",
+    description: "Use our CLI tool to scaffold a new Okami UI project with all dependencies pre-configured.",
     command: "nexus new my-app",
     icon: Terminal,
     prompt: "$",
@@ -236,7 +236,7 @@ const GettingStarted = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              Join our community of developers and start your journey with Nexus today.
+              Join our community of developers and start your journey with Okami today.
             </motion.p>
             <motion.div
               className="mt-8"

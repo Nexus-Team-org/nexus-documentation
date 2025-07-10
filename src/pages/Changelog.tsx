@@ -10,7 +10,7 @@ const releases = [
     version: "v1.0.0",
     date: "2025-01-01",
     title: "The Genesis",
-    description: "The first stable release of Nexus Design System, featuring a comprehensive set of 30+ components, full dark mode support, and a brand new documentation site.",
+    description: "The first stable release of Okami Design System, featuring a comprehensive set of 30+ components, full dark mode support, and a brand new documentation site.",
     changes: [
       { type: "feature", text: "Initial release with 30+ components" },
       { type: "feature", text: "Full dark mode support" },
@@ -33,7 +33,7 @@ const releases = [
     version: "v0.8.0",
     date: "2024-10-01",
     title: "The Beginning",
-    description: "The first public beta of Nexus Design System, featuring a limited set of components and a basic documentation site.",
+    description: "The first public beta of Okami Design System, featuring a limited set of components and a basic documentation site.",
     changes: [
       { type: "feature", text: "Initial public beta release" },
       { type: "feature", text: "Added 5 new components" },
@@ -62,7 +62,7 @@ const Changelog = () => {
             Changelog
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mt-6">
-            Stay up-to-date with the latest features, improvements, and bug fixes for Nexus Design System.
+            Stay up-to-date with the latest features, improvements, and bug fixes for Okami Design System.
           </p>
         </motion.div>
       </header>
@@ -131,7 +131,7 @@ const Changelog = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold">Stay in the Loop</h2>
           <p className="text-muted-foreground max-w-xl mx-auto mt-4">
-            Subscribe to our newsletter to get the latest updates and news about Nexus Design System.
+            Subscribe to our newsletter to get the latest updates and news about Okami Design System.
           </p>
           <div className="mt-8">
             <Button size="lg">
