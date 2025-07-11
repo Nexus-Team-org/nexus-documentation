@@ -10,7 +10,7 @@ const steps = [
   {
     title: "Create your project",
     description: "Use our CLI tool to scaffold a new Okami UI project with all dependencies pre-configured.",
-    command: "nexus new my-app",
+    command: "okami new my-app",
     icon: Terminal,
     prompt: "$",
     username: "user",

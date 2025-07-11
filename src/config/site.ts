@@ -2,7 +2,7 @@
 export const siteConfig = {
   name: "Okami",
   logo: "</>",
-  version: "v1.0.0",
+  version: "v0.1.6",
   description: "A modern React component library with TypeScript, Tailwind CSS, and everything you need to build beautiful applications faster.",
   discord: {
     inviteUrl: "https://discord.gg/227DUAqTzN",
