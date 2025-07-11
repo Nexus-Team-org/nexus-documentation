@@ -66,7 +66,7 @@ const Index = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                Now available in v1.0.0
+                Now available in {siteConfig.version}
               </Badge>
             </motion.div>
             
@@ -118,10 +118,10 @@ const Index = () => {
               <div className="p-4 bg-background/50 dark:bg-background/50">
                 <div className="flex items-center group-has-[:focus-visible]:ring-2 group-has-[:focus-visible]:ring-ring/50 rounded-md transition-all duration-200 bg-background/80 dark:bg-background/80 border border-black/5 dark:border-white/5 overflow-hidden">
                   <code className="text-sm font-mono text-foreground/90 dark:text-foreground/90 select-all px-4 py-2.5 flex-1">
-                    $ npm install -g @nexus-dev/cli
+                    $ npm install -g @okami-team/cli
                   </code>
                   <div className="px-2 border-l border-black/5 dark:border-white/5 h-full flex items-center">
-                    <CopyButton text="npm install -g @nexus-dev/cli" />
+                    <CopyButton text="npm install -g @okami-team/cli" />
                   </div>
                 </div>
               </div>
