@@ -33,7 +33,6 @@ export const Navbar = () => {
     <div className="fixed top-0 left-0 right-0 z-50">
       <AnimatePresence mode="wait" initial={false}>
         <motion.nav
-          key={location.pathname}
           className={cn(
             "transition-all duration-300 ease-out will-change-transform",
             isScrolled 
