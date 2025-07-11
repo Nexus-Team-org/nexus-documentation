@@ -12,9 +12,9 @@ const NotFound = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 flex items-center justify-center p-4">
-      <div className="max-w-md w-full space-y-6 text-center bg-card p-8 rounded-lg shadow-lg border border-border">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-destructive/10 text-destructive mb-6 mx-auto">
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="max-w-md w-full space-y-6 text-center p-8 rounded-lg border border-border">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full text-destructive mb-6 mx-auto">
           <AlertTriangle className="w-10 h-10" />
         </div>
         

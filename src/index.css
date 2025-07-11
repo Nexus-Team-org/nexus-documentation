@@ -3,6 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-10px) translateX(10px); }
+  66% { transform: translateY(10px) translateX(-10px); }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -89,8 +101,36 @@
     @apply border-border;
   }
 
+  html, body, #root {
+    @apply min-h-full;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground relative overflow-x-hidden;
+  }
+
+  body::before {
+    content: '';
+    @apply fixed inset-0 -z-10;
+    background: 
+      radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.03) 0%, transparent 25%),
+      radial-gradient(circle at 90% 80%, rgba(0, 0, 0, 0.03) 0%, transparent 25%),
+      radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.02) 0%, transparent 30%);
+    background-size: 200% 200%;
+    animation: gradient-shift 20s ease infinite;
+    transition: background-color 0.3s ease;
+  }
+
+  .dark body::before {
+    background: 
+      radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 25%),
+      radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 25%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 30%);
+  }
+
+  .floating-shape {
+    @apply absolute rounded-full opacity-10 dark:opacity-5;
+    animation: float 15s ease-in-out infinite;
   }
 }
 

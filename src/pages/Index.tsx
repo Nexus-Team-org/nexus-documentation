@@ -26,15 +26,12 @@ const CopyButton = ({ text }: { text: string }) => {
 
   return (
     <button 
-      className="ml-auto p-1.5 rounded-md hover:bg-muted/50 transition-colors text-muted-foreground hover:text-foreground flex items-center gap-1.5 text-sm"
+      className="p-1.5 rounded-md hover:bg-muted/50 transition-colors text-muted-foreground hover:text-foreground"
       onClick={handleCopy}
-      aria-label={isCopied ? "Copied!" : "Copy to clipboard"}
+      aria-label="Copy to clipboard"
     >
       {isCopied ? (
-        <>
-          <Check className="w-4 h-4 text-green-500" />
-          <span className="text-xs">Copied!</span>
-        </>
+        <Check className="w-4 h-4 text-green-500" />
       ) : (
         <Copy className="w-4 h-4" />
       )}
@@ -44,14 +41,7 @@ const CopyButton = ({ text }: { text: string }) => {
 
 const Index = () => {
   return (
-    <div className="relative overflow-hidden min-h-screen bg-gradient-to-b from-background/50 via-background to-background/80">
-      {/* Animated gradient background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background"></div>
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 sm:left-1/3 sm:top-1/2 sm:-translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-primary/10 via-purple-500/10 to-pink-500/10 blur-3xl animate-float" />
-        <div className="absolute -bottom-32 -right-32 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl animate-float animation-delay-2000" />
-        <div className="absolute top-1/4 -right-20 w-[400px] h-[400px] rounded-full bg-blue-500/10 blur-3xl animate-float animation-delay-4000" />
-      </div>
+    <div className="relative">
       
       <div className="relative max-w-7xl mx-auto px-3 sm:px-5 lg:px-8 py-12">
         {/* Hero Section */}
@@ -105,26 +95,35 @@ const Index = () => {
 
             {/* Installation Command */}
             <motion.div
-              className="mt-10 bg-background/60 border border-border/20 rounded-xl p-4 max-w-2xl mx-auto backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 group"
+              className="mt-12 bg-background/90 dark:bg-background/90 border border-black/10 dark:border-white/10 rounded-xl max-w-2xl mx-auto group overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              whileHover={{ y: -2, transition: { duration: 0.15 } }}
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-muted-foreground">Terminal</span>
-                <div className="flex space-x-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+              {/* Header */}
+              <div className="px-4 pt-3 pb-2 border-b border-black/5 dark:border-white/5 bg-gradient-to-b from-black/5 to-transparent">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/90"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/90"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/90"></div>
+                  </div>
+                  <span className="text-xs font-medium text-muted-foreground/80 font-mono">Terminal</span>
+                  <div className="w-6"></div> {/* Spacer for balance */}
                 </div>
               </div>
-              <div className="flex items-center">
-                <span className="text-muted-foreground/80 select-none mr-2 font-mono">$</span>
-                <code className="text-sm font-mono text-foreground select-all bg-background/50 px-3 py-1.5 rounded-md">
-                  npm install -g @nexus-dev/cli
-                </code>
-                <CopyButton text="npm install -g @nexus-dev/cli" />
+              
+              {/* Command */}
+              <div className="p-4 bg-background/50 dark:bg-background/50">
+                <div className="flex items-center group-has-[:focus-visible]:ring-2 group-has-[:focus-visible]:ring-ring/50 rounded-md transition-all duration-200 bg-background/80 dark:bg-background/80 border border-black/5 dark:border-white/5 overflow-hidden">
+                  <code className="text-sm font-mono text-foreground/90 dark:text-foreground/90 select-all px-4 py-2.5 flex-1">
+                    $ npm install -g @nexus-dev/cli
+                  </code>
+                  <div className="px-2 border-l border-black/5 dark:border-white/5 h-full flex items-center">
+                    <CopyButton text="npm install -g @nexus-dev/cli" />
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -204,7 +203,7 @@ const Index = () => {
           {siteConfig.stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="group relative overflow-hidden bg-gradient-to-b from-card to-card/80 rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -235,12 +234,7 @@ const Index = () => {
       </div>
 
       {/* Features */}
-      <div className="relative py-16 md:py-20 overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
-          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
-          <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-purple-500/5 blur-3xl" />
-        </div>
+      <div className="relative py-16 md:py-20">
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -278,7 +272,7 @@ const Index = () => {
                     ease: [0.16, 1, 0.3, 1]
                   }}
                 >
-                  <Card className="h-full bg-card/50 backdrop-blur-sm border border-border/30 hover:border-primary/20 transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 overflow-hidden">
+                  <Card className="h-full border border-border/30 hover:border-primary/20 transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                     
                     <CardHeader className="pb-4">
@@ -308,8 +302,7 @@ const Index = () => {
       </div>
 
       {/* Community */}
-      <section className="relative py-24 bg-background mb-32">
-        <div className="absolute inset-0 bg-grid-black/[0.05] dark:bg-grid-white/[0.05]" />
+      <section className="relative py-24 mb-32">
         <div className="container relative px-4 mx-auto">
           <div className="max-w-5xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -358,52 +351,63 @@ const Index = () => {
 
       {/* Call to Action */}
       <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-foreground to-foreground/90 text-background rounded-3xl p-8 lg:p-16 text-center mx-4 my-16 lg:my-24 shadow-2xl"
+        className="relative overflow-hidden bg-foreground text-background rounded-3xl p-8 lg:p-16 text-center mx-4 my-16 lg:my-24 border border-border/20"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Decorative elements */}
-        <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full filter blur-3xl opacity-30"></div>
-        <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-secondary/10 rounded-full filter blur-3xl opacity-30"></div>
-        
         <div className="relative z-10 space-y-8 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <span className="inline-block px-4 py-1.5 text-sm font-medium bg-background/10 text-background/90 mb-6 border border-background/20 rounded-full">
+              Get Started
+            </span>
+          </motion.div>
           
           <motion.h2 
-            className="text-4xl lg:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-background to-background/80"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            Ready to level up your development?
+            Ready to level up your
+            <span className="block mt-2">
+              development journey?
+            </span>
           </motion.h2>
           
           <motion.p 
-            className="text-background/90 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed"
+            className="text-background/80 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.5 }}
+            transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             Join {siteConfig.name} today and be part of a growing community of developers building the next generation of web applications.
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center pt-2"
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link to="/getting-started" className="group">
               <Button 
                 size="lg" 
-                className="bg-background text-foreground hover:bg-background/90 hover:shadow-lg hover:scale-105 transition-all duration-300 group-hover:-translate-y-0.5 px-8 py-6 text-base font-medium"
+                className="bg-background text-foreground hover:bg-background/90 px-8 py-6 text-base font-medium rounded-lg hover:shadow-md transition-all duration-300"
               >
-                Get Started Now
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span className="flex items-center">
+                  Get Started Now
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
               </Button>
             </Link>
             {/* Global styles */}

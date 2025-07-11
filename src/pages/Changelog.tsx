@@ -43,14 +43,14 @@ const releases = [
 ];
 
 const changeMeta = {
-  feature: { icon: Check, className: "bg-green-500/10 text-green-500", label: "Feature" },
-  fix: { icon: Bug, className: "bg-red-500/10 text-red-500", label: "Fix" },
-  improvement: { icon: Zap, className: "bg-blue-500/10 text-blue-500", label: "Improvement" },
+  feature: { icon: Check, className: "text-green-500", label: "Feature" },
+  fix: { icon: Bug, className: "text-red-500", label: "Fix" },
+  improvement: { icon: Zap, className: "text-blue-500", label: "Improvement" },
 };
 
 const Changelog = () => {
   return (
-    <div className="bg-background text-foreground">
+    <div>
       <header className="py-16 md:py-24 lg:py-32 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ const Changelog = () => {
 
       <main className="container max-w-5xl mx-auto px-4 py-12">
         <div className="relative">
-          <div className="absolute left-1/2 -translate-x-1/2 w-px bg-border h-full hidden md:block" aria-hidden="true" />
+          <div className="absolute left-1/2 -translate-x-1/2 w-px h-full hidden md:block" aria-hidden="true" />
           {releases.map((release, index) => (
             <motion.div
               key={release.version}
@@ -80,7 +80,7 @@ const Changelog = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className={cn("md:text-right", index % 2 === 0 ? "md:order-1" : "md:order-2")}>
-                <div className="inline-block bg-card p-4 rounded-lg border dark:border-gray-800">
+                <div className="inline-block p-4 rounded-lg border">
                   <div className="flex items-center gap-3">
                     <GitBranch className="w-5 h-5 text-muted-foreground" />
                     <h3 className="text-2xl font-bold">{release.title}</h3>
