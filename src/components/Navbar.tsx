@@ -50,6 +50,7 @@ export const Navbar = () => {
                   <NavLink
                     key={item.href}
                     to={item.href}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     className={cn(
                       "px-4 py-2 rounded-md transition-colors duration-200 font-medium text-sm",
                       isActive
@@ -108,7 +109,10 @@ export const Navbar = () => {
                   <NavLink
                     key={item.href}
                     to={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      setMobileMenuOpen(false);
+                    }}
                     className={cn(
                       "block px-3 py-2 rounded-md text-base font-medium transition-colors",
                       isActive
