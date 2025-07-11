@@ -117,6 +117,7 @@ export const Navbar = () => {
                   <NavLink
                     key={item.href}
                     to={item.href}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     className={cn(
                       "px-4 py-2 rounded-md transition-colors duration-200 font-medium text-sm",
                       isActive

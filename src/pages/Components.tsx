@@ -1,5 +1,6 @@
 
 import { motion } from "framer-motion";
+import { useParams, useNavigate } from "react-router-dom";
 import { ComponentSidebar } from "@/components/ComponentSidebar";
 import { ComponentViewer } from "@/components/ComponentViewer";
 import { Button } from "@/components/ui/button";
@@ -11,38 +12,63 @@ import { Menu } from "lucide-react";
 import { MobileSidebar } from "@/components/MobileSidebar";
 
 const Components = () => {
-  const buttonCode = `import { Button } from "@/components/ui/button";
+  const { slug } = useParams<{ slug?: string }>();
+  const navigate = useNavigate();
+  // Build meta map from site config for status/description
+  const componentsMeta = Object.fromEntries(
+    siteConfig.navigation.components.map((c) => [c.href.split("/").pop()!, c])
+  ) as Record<string, { title: string; description: string; status: string; href: string }>;
+
+  // --- Component registry with detailed demos (extendable)
+  const componentsRegistry = {
+    button: {
+      title: "Button",
+      description: "A collection of button components with various styles and states. Use buttons to trigger actions and navigate through your application with professional styling.",
+      code: `import { Button } from "@/components/ui/button";
 
 export function ButtonDemo() {
   return (
-    <div className="flex flex-wrap gap-4">
-      <Button variant="default">Default</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="destructive">Destructive</Button>
-    </div>
-  );
-}`;
+    <div className=\"flex flex-wrap gap-4\">\n      <Button variant=\"default\">Default</Button>\n      <Button variant=\"secondary\">Secondary</Button>\n      <Button variant=\"outline\">Outline</Button>\n      <Button variant=\"ghost\">Ghost</Button>\n      <Button variant=\"destructive\">Destructive</Button>\n    </div>\n  );
+}`,
+      usage: `import { Button } from "@/components/ui/button";
 
-  const buttonUsage = `import { Button } from "@/components/ui/button";
+<Button>Click me</Button>`,
+      preview: (
+        <div className="flex flex-wrap gap-4 p-8">
+          <Button variant="default">Default</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="destructive">Destructive</Button>
+        </div>
+      ),
+    },
+    // add more detailed component demos here
+  } as const;
 
-// Basic usage
-<Button>Click me</Button>
+  const currentKey = (slug ?? "button").toLowerCase();
+  const detailed = (componentsRegistry as Record<string, any>)[currentKey];
+  const meta = componentsMeta[currentKey];
 
-// With variants
-<Button variant="outline">Outline Button</Button>
-<Button variant="secondary">Secondary Button</Button>
+  if (!meta) {
+    navigate("/components/button", { replace: true });
+    return null;
+  }
 
-// With sizes
-<Button size="sm">Small</Button>
-<Button size="lg">Large</Button>
+  const activeComponent = detailed ?? {
+    title: meta.title,
+    description: meta.description,
+    code: `// Demo code for ${meta.title} coming soon`,
+    usage: undefined,
+    preview: (
+      <div className="p-8 text-muted-foreground text-sm">Preview for {meta.title} coming soon.</div>
+    ),
+  };
 
-// With icons
-<Button>
-  <Icon className="w-4 h-4 mr-2" />
-  Button with icon
-</Button>`;
+  if (!activeComponent) {
+    navigate("/components/button", { replace: true });
+    return null;
+  }
 
   return (
     <div className="flex min-h-screen">
@@ -71,18 +97,12 @@ export function ButtonDemo() {
           transition={{ duration: 0.6 }}
         >
           <ComponentViewer
-            title="Button"
-            description="A collection of button components with various styles and states. Use buttons to trigger actions and navigate through your application with professional styling."
-            code={buttonCode}
-            usage={buttonUsage}
+            title={activeComponent.title}
+            description={activeComponent.description}
+            code={activeComponent.code}
+            usage={activeComponent.usage}
           >
-            <div className="flex flex-wrap gap-4 p-8">
-              <Button variant="default">Default</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="destructive">Destructive</Button>
-            </div>
+            {activeComponent.preview}
           </ComponentViewer>
 
           <div className="mt-16">
@@ -121,6 +141,7 @@ export function ButtonDemo() {
                         size="sm"
                         className="w-full"
                         disabled={component.status !== "ready"}
+                        onClick={() => navigate(component.href.replace('/components/','/components/'))}
                       >
                         {component.status === "ready" ? "View Component" : "Coming Soon"}
                       </Button>
