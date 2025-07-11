@@ -16,6 +16,7 @@ const Examples = lazy(() => import("@/pages/Examples"));
 const Changelog = lazy(() => import("@/pages/Changelog"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const Feedback = lazy(() => import("@/pages/Feedback"));
+const Cli = lazy(() => import("@/pages/Cli"));
 
 const routeConfig: RouteObject[] = [
   {
@@ -28,6 +29,7 @@ const routeConfig: RouteObject[] = [
       { path: "examples", element: <Examples /> },
       { path: "changelog", element: <Changelog /> },
       { path: "feedback", element: <Feedback /> },
+      { path: "cli", element: <Cli /> },
     ],
   },
   { path: "*", element: <NotFound /> },

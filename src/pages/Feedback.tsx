@@ -74,7 +74,7 @@ const Feedback = () => {
           <h1 className="text-4xl font-bold tracking-tight">Share Your Feedback</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             We'd love to hear your thoughts, suggestions, or any issues you've encountered.
-            Your feedback helps us improve Nexus UI.
+            Your feedback helps us improve Okami UI.
           </p>
         </div>
         {error && (
