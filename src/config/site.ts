@@ -28,16 +28,16 @@ export const siteConfig = {
         href: "/examples",
       },
       {
+        title: "CLI",
+        href: "/cli",
+      },
+      {
         title: "Changelog",
         href: "/changelog",
       },
       {
         title: "Feedback",
         href: "/feedback",
-      },
-      {
-        title: "CLI",
-        href: "/cli",
       },
     ],
     components: [

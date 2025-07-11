@@ -25,7 +25,7 @@ const routeConfig: RouteObject[] = [
     children: [
       { path: "", element: <Index /> },
       { path: "getting-started", element: <GettingStarted /> },
-      { path: "components", element: <Components /> },
+      { path: "components/:slug?", element: <Components /> },
       { path: "examples", element: <Examples /> },
       { path: "changelog", element: <Changelog /> },
       { path: "feedback", element: <Feedback /> },
