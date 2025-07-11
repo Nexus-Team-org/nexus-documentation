@@ -109,7 +109,7 @@ export const Navbar = () => {
               </NavLink>
             </motion.div>
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-1">
               {siteConfig.navigation.main.map((item) => {
                 const isActive = location.pathname === item.href;
                 
@@ -131,8 +131,8 @@ export const Navbar = () => {
             </div>
           </div>
           
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-3">
+          {/* Desktop Actions - Show on large screens */}
+          <div className="hidden lg:flex items-center space-x-3">
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -145,8 +145,8 @@ export const Navbar = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile Menu Button - Show on mobile and tablet */}
+          <div className="lg:hidden flex items-center">
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -184,9 +184,23 @@ export const Navbar = () => {
                 damping: 30,
                 duration: 0.2
               }}
-              className="absolute top-[calc(100%+0.5rem)] left-4 right-4 bg-background rounded-xl shadow-2xl border border-border/20 overflow-hidden max-h-[70vh]"
+              className="absolute top-[calc(100%+0.5rem)] left-4 right-4 bg-background rounded-xl shadow-2xl border border-border/20 overflow-hidden max-h-[80vh] 
+              md:max-w-md md:left-auto md:right-4 md:top-[calc(100%+0.5rem)]
+              lg:hidden"
             >
-              <div className="p-3 space-y-1 overflow-y-auto">
+              <div className="p-4 space-y-2 overflow-y-auto max-h-[calc(80vh-60px)]">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-lg font-semibold text-foreground">Menu</h3>
+                  <button 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-1 rounded-full hover:bg-accent/10"
+                    aria-label="Close menu"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                {/* Navigation Items - Show in menu on mobile, tablet, and iPad */}
+                <div className="space-y-1">
                 {siteConfig.navigation.main.map((item, index) => {
                   const isActive = location.pathname === item.href;
                   
@@ -197,23 +211,25 @@ export const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.02 * index, duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     >
-                    <NavLink
-                      to={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={cn(
-                        "block px-4 py-3 rounded-lg text-base font-medium transition-colors",
-                        isActive
-                          ? "bg-accent/10 text-accent-foreground"
-                          : "text-muted-foreground hover:bg-accent/5 hover:text-foreground"
-                      )}
-                    >
-                      {item.title}
-                    </NavLink>
-                  </motion.div>
-                );
-              })}
+                      <NavLink
+                        to={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={cn(
+                          "block px-4 py-3 rounded-lg text-base font-medium transition-colors",
+                          isActive
+                            ? "bg-accent/10 text-accent-foreground"
+                            : "text-muted-foreground hover:bg-accent/5 hover:text-foreground"
+                        )}
+                      >
+                        {item.title}
+                      </NavLink>
+                    </motion.div>
+                  );
+                })}
+                </div>
+
               <motion.div 
-                className="p-3 border-t border-border/20 sticky bottom-0 bg-background/95 backdrop-blur-sm"
+                className="p-3 border-t border-border/20 sticky bottom-0 bg-background/95 backdrop-blur-sm z-10"
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
