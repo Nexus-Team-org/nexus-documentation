@@ -118,12 +118,12 @@ export const DiscordWidget = () => {
                   className="pt-2"
                 >
                   <Button 
-                    size="lg" 
-                    className="w-full hover:opacity-90 transition-all group"
+                    variant="outline"
+                    className="w-full bg-background"
                     onClick={() => window.open(siteConfig.discord.inviteUrl, '_blank')}
                   >
-                    <MessageCircle className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                    Join Discord Community
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Join our Discord
                   </Button>
                 </motion.div>
               </div>
@@ -155,7 +155,6 @@ export const DiscordWidget = () => {
             </div>
           </CardContent>
         </div>
-      </div>
     </motion.div>
   );
 };
