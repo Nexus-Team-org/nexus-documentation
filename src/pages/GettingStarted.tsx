@@ -124,7 +124,7 @@ const GettingStarted = () => {
                   <p className="text-muted-foreground text-lg">{step.description}</p>
                 </div>
                 <div className={`relative group ${index % 2 !== 0 ? 'md:order-1' : ''}`}>
-                  <div className="relative rounded-lg bg-muted text-muted-foreground font-mono text-sm border overflow-hidden">
+                  <div className="relative rounded-lg text-muted-foreground font-mono text-sm border overflow-hidden">
                     {/* Terminal header */}
                     <div className="flex items-center px-4 py-2 border-b">
                       <div className="flex space-x-1.5">
@@ -166,7 +166,7 @@ const GettingStarted = () => {
 
         {/* Features */}
         <motion.div
-          className="space-y-12 py-24 bg-muted/50 border-y"
+          className="space-y-12 py-24 border-y"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -186,7 +186,7 @@ const GettingStarted = () => {
                 key={index}
                 variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } } }}
               >
-                <Card className="p-8 border-2 h-full bg-card transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-primary/20">
+                <Card className="p-8 border-2 h-full transition-all duration-300 hover:border-primary">
                   <CardHeader className="p-0 mb-6">
                     <CardTitle className="flex items-center text-2xl font-bold">
                       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">

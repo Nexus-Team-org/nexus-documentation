@@ -59,17 +59,11 @@ export const DiscordWidget = () => {
       transition={{ duration: 0.6 }}
       className="w-full max-w-6xl mx-auto"
     >
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-background to-background border border-border/50 shadow-xl">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <div className="absolute -right-20 -top-20 w-64 h-64 bg-primary/10 rounded-full filter blur-3xl" />
-        <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-secondary/10 rounded-full filter blur-3xl" />
-        
-        <div className="relative z-10">
-          <CardHeader className="bg-gradient-to-r from-primary to-primary/80 text-background p-8">
+      <div className="relative overflow-hidden rounded-2xl border">
+        <div className="p-8">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
               <div className="flex items-center space-x-4">
-                <div className="p-3 bg-background/20 rounded-xl backdrop-blur-sm">
+                <div className="p-3 rounded-xl">
                   <MessageCircle className="w-8 h-8" />
                 </div>
                 <div>
@@ -80,7 +74,7 @@ export const DiscordWidget = () => {
               <Button 
                 size="lg"
                 variant="secondary"
-                className="bg-background text-foreground hover:bg-background/90 transition-all group"
+                className="hover:bg-background/90 transition-all group"
                 onClick={() => window.open(siteConfig.discord.inviteUrl, '_blank')}
               >
                 <Sparkles className="w-5 h-5 mr-2 group-hover:animate-pulse" />
@@ -88,7 +82,7 @@ export const DiscordWidget = () => {
                 <ExternalLink className="w-4 h-4 ml-2 opacity-70" />
               </Button>
             </div>
-          </CardHeader>
+          </div>
           
           <CardContent className="p-8">
             <div className="grid md:grid-cols-2 gap-8">
@@ -125,7 +119,7 @@ export const DiscordWidget = () => {
                 >
                   <Button 
                     size="lg" 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:opacity-90 transition-all group"
+                    className="w-full hover:opacity-90 transition-all group"
                     onClick={() => window.open(siteConfig.discord.inviteUrl, '_blank')}
                   >
                     <MessageCircle className="w-5 h-5 mr-2 group-hover:animate-bounce" />
@@ -136,14 +130,14 @@ export const DiscordWidget = () => {
               
               {/* Discord Preview */}
               <motion.div 
-                className="hidden md:block relative h-full min-h-[400px] rounded-xl overflow-hidden border border-border/50 bg-background"
+                className="hidden md:block relative h-full min-h-[400px] rounded-xl overflow-hidden border"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center p-8">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <MessageCircle className="w-8 h-8 text-primary" />
                     </div>
                     <h4 className="font-semibold text-foreground mb-2">Join our Discord</h4>
