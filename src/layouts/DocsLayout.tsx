@@ -2,6 +2,7 @@
 import { Outlet } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { motion } from "framer-motion";
 
 const DocsLayout = () => {
@@ -17,6 +18,7 @@ const DocsLayout = () => {
         <Outlet />
       </motion.main>
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 };

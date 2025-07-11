@@ -34,11 +34,12 @@ export const Footer = () => {
           <div>
             <h3 className="text-sm font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/getting-started" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Getting Started</Link></li>
-              <li><Link to="/components" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Components</Link></li>
-              <li><Link to="/examples" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Examples</Link></li>
-              <li><Link to="/changelog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Changelog</Link></li>
-              <li><Link to="/feedback" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Feedback</Link></li>
+              <li><Link to="/getting-started" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Getting Started</Link></li>
+              <li><Link to="/components" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Components</Link></li>
+              <li><Link to="/examples" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Examples</Link></li>
+              <li><Link to="/cli" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">CLI</Link></li>
+              <li><Link to="/changelog" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Changelog</Link></li>
+              <li><Link to="/feedback" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Feedback</Link></li>
             </ul>
           </div>
 
@@ -66,13 +67,13 @@ export const Footer = () => {
             &copy; {currentYear} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/terms" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Terms of Service
             </Link>
-            <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/privacy" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/cookies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/cookies" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Cookie Policy
             </Link>
           </div>
