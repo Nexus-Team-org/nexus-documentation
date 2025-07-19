@@ -105,7 +105,10 @@ const CliPage = () => {
     setTimeout(() => setCopiedCommand(null), 2000);
   };
 
-  const sidebarSections = [
+  type SidebarItem = { id: string; label: string };
+  type SidebarSection = { title: string; items: SidebarItem[] };
+
+  const sidebarSections: SidebarSection[] = [
     {
       title: "Getting Started",
       items: [
@@ -138,7 +141,7 @@ const CliPage = () => {
         { id: "faq", label: "FAQ" },
       ],
     },
-  ] as const;
+  ];
 
   const tocItems = sidebarSections.flatMap((s) => s.items) as { id: string; label: string }[];
   const [activeId, setActiveId] = useState<string>("introduction");
@@ -170,7 +173,7 @@ const CliPage = () => {
     <div className="w-full lg:pl-64">
       {/* Local Side Navigation */}
       <nav className="hidden lg:block fixed top-28 left-8 z-20 w-56">
-        <div className="rounded-lg border p-4 space-y-6">
+        <div className="rounded-lg border p-4 space-y-6 bg-card shadow-lg">
           {sidebarSections.map((section) => (
             <div key={section.title} className="space-y-2">
               <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground px-2">
